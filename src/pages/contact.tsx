@@ -45,7 +45,7 @@ const Contact: React.FC = () => {
             We're here to help. Select a topic and tell us more.
           </p>
 
-          {/* Topic Selector */}
+
           <div className="mb-6">
             <label className="block font-semibold text-gray-700 mb-2">
               Topic
