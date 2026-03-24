@@ -1,163 +1,108 @@
-// import React from "react";
-import hero from '../assets/aboout.jpg'
-import hero1 from '../assets/about.jpg'
-// import hero2 from '../assets/aboout.jpg'
-import { motion } from "framer-motion";
-import { Globe, HeartHandshake, Users, Phone, ShieldCheck, HandCoins } from "lucide-react";
+// About.tsx (Core Values redesigned with images)
+import React from "react";
+import ceo from '../assets/ceo.png';
 
-const AboutUs = () => {
+import img1 from '../assets/interior1.jpg';
+import img2 from '../assets/interior2.jpg';
+import img3 from '../assets/interior13.jpg';
+import img4 from '../assets/interior14.jpg';
+
+const About: React.FC = () => {
+  const coreValues = [
+    {
+      title: "Creative Design",
+      description: "We craft spaces that are not only beautiful but also functional, reflecting your style and personality.",
+      image: img1,
+    },
+    {
+      title: "Comfort & Functionality",
+      description: "Every room is designed to feel welcoming and practical for everyday living.",
+      image: img2,
+    },
+    {
+      title: "Innovative Solutions",
+      description: "We stay ahead of trends and bring unique ideas to make your space stand out.",
+      image: img3,
+    },
+    {
+      title: "Client Collaboration",
+      description: "We work closely with you every step of the way to ensure your vision becomes reality.",
+      image: img4,
+    },
+  ];
+
   return (
-    <div>
-      {/* Hero Section */}
-      <section 
-        className="relative h-[60vh] flex items-center justify-center bg-cover bg-center text-white"
-        style={{ backgroundImage: `url(${hero})` }}
-      >
-        <div className="absolute bg-black opacity-30 inset-0"></div>
-        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-        <div className="relative  text-center max-w-2xl px-6">
-          <h1 className="text-2xl font-bold">About Us</h1>
-          <p className="mt-4 text-sm text-gray-300">
-            We are dedicated to empowering individuals and families by providing 
-            access to essential benefits, financial assistance, and health services.
+    <div className="min-h-screen bg-gray-50 flex flex-col items-center p-6">
+      <div className="max-w-6xl w-full bg-white rounded-xl shadow-lg p-10 space-y-10">
+        {/* Header */}
+        <div className="space-y-4 text-center">
+          <h1 className="text-4xl font-bold text-gray-800">About Us</h1>
+          <p className="text-gray-600 text-lg">
+            At CoreCraft, we believe that every space should tell a story. Our mission is to bring your vision to life with elegant, functional, and personalized interior designs.
           </p>
         </div>
-      </section>
 
-      <div className="bg-gray-50">
-      {/* About Section */}
-      <section className="max-w-6xl mx-auto px-6 py-16 text-center">
-        <motion.h2 
-          className="text-4xl font-bold text-blue-800"
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          About United Way Benefits
-        </motion.h2>
-        
-        <motion.p 
-          className="mt-4 text-gray-700 text-lg leading-relaxed"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          At United Way Benefits, we are committed to supporting individuals and families by 
-          providing financial assistance, healthcare access, and essential resources. As part of 
-          our mission, we collaborate with organizations worldwide to ensure that those in need 
-          receive the support they deserve.
-        </motion.p>
-      </section>
+        {/* Core Values Section with Images */}
+        <div className="grid md:grid-cols-2 gap-8">
+          {coreValues.map((value, idx) => (
+            <div key={idx} className="rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition">
+              <img src={value.image} alt={value.title} className="w-full h-48 object-cover"/>
+              <div className="p-6 bg-white">
+                <h3 className="text-xl font-bold text-gray-800 mb-2">{value.title}</h3>
+                <p className="text-gray-600">{value.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
 
-      {/* Global Reach Section */}
-      <section className="bg-blue-800 text-white py-16">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <motion.h2 
-            className="text-4xl font-bold"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-          >
-            Our Global Reach
-          </motion.h2>
+        {/* Mission & Vision */}
+        <div className="space-y-4">
+          <h2 className="text-2xl font-bold text-gray-800">Our Mission</h2>
+          <p className="text-gray-600">
+            To transform spaces into inspiring environments that enhance daily life and express individuality.
+          </p>
 
-          <motion.p 
-            className="mt-4 text-lg leading-relaxed"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-          >
-            United Way Benefits extends its support across multiple regions, ensuring financial 
-            aid and social support reach those who need it the most.
-          </motion.p>
+          <h2 className="text-2xl font-bold text-gray-800">Our Vision</h2>
+          <p className="text-gray-600">
+            To be recognized as a leading interior design brand, creating timeless, elegant, and sustainable spaces.
+          </p>
+        </div>
 
-          <div className="grid md:grid-cols-3 gap-8 mt-10">
-            {[
-              { title: "North America", region: "United States & Canada", icon: <Globe /> },
-              { title: "Australia & Oceania", region: "Supporting various communities", icon: <Globe /> },
-              { title: "Europe, Asia & Middle East", region: "Ensuring financial aid distribution", icon: <Globe /> },
-            ].map((item, index) => (
-              <motion.div 
-                key={index}
-                className="bg-white text-blue-800 p-6 rounded-lg shadow-lg flex flex-col items-center"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 * index }}
-              >
-                <div className="text-blue-800 p-3 bg-blue-100 rounded-full mb-4 text-4xl">
-                  {item.icon}
-                </div>
-                <h3 className="text-xl font-semibold">{item.title}</h3>
-                <p className="text-gray-700 mt-2">{item.region}</p>
-              </motion.div>
-            ))}
+        {/* CEO Section */}
+        <div className="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
+          <img
+            src={ceo}
+            alt="Donna M Hicks"
+            className="w-40 h-40 object-cover rounded-full shadow-lg"
+          />
+          <div>
+            <h3 className="text-2xl font-bold text-gray-800">Donna M Hicks</h3>
+            <p className="text-gray-500 mb-2">Founder & CEO</p>
+            <p className="text-gray-600">
+              Donna M Hicks is the visionary behind CoreCraft. With over 15 years 
+              of experience in interior design, she combines creativity, functionality, 
+              and elegance to bring unique spaces to life. Her passion is helping clients 
+              create homes that inspire and delight.
+            </p>
           </div>
         </div>
-      </section>
 
-      <img src={hero1} className='mt-3 m-auto' />
-
-      {/* Why Choose Us Section */}
-      <section className="py-16">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <motion.h2 
-            className="text-4xl font-bold text-blue-800"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            Why Choose United Way Benefits?
-          </motion.h2>
-
-          <motion.p 
-            className="mt-4 text-gray-700 text-lg leading-relaxed"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-          >
-            We take pride in providing top-notch assistance and ensuring that beneficiaries receive 
-            world-class support.
-          </motion.p>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
-            {[
-              { title: "24/7 Support", desc: "Always ready to assist you.", icon: <Phone /> },
-              { title: "Financial Assistance", desc: "Programs to uplift families.", icon: <HandCoins /> },
-              { title: "Transparency & Fairness", desc: "Ensuring equal distribution.", icon: <ShieldCheck /> },
-              { title: "Community Programs", desc: "Focused on education & healthcare.", icon: <Users /> },
-              { title: "Self-Sufficiency", desc: "Helping you stand on your own.", icon: <HeartHandshake /> },
-            ].map((item, index) => (
-              <motion.div 
-                key={index}
-                className="bg-white p-6 rounded-lg shadow-lg flex flex-col items-center"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 * index }}
-              >
-                <div className="text-blue-800 p-3 bg-blue-100 rounded-full mb-4 text-4xl">
-                  {item.icon}
-                </div>
-                <h3 className="text-xl font-semibold text-gray-800">{item.title}</h3>
-                <p className="text-gray-600 mt-2">{item.desc}</p>
-              </motion.div>
-            ))}
+        {/* Images / Gallery Section */}
+        <div className="space-y-6">
+          {/* <h2 className="text-2xl font-bold text-gray-800">Our Work</h2> */}
+          <p className="text-gray-600">
+            Here’s a glimpse of some of the interior spaces we’ve transformed.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            <img src={img1} alt="Interior 1" className="w-full h-48 object-cover rounded-lg shadow-md hover:scale-105 transition transform" />
+            <img src={img2} alt="Interior 2" className="w-full h-48 object-cover rounded-lg shadow-md hover:scale-105 transition transform" />
+            <img src={img3} alt="Interior 3" className="w-full h-48 object-cover rounded-lg shadow-md hover:scale-105 transition transform" />
+            <img src={img4} alt="Interior 4" className="w-full h-48 object-cover rounded-lg shadow-md hover:scale-105 transition transform" />
           </div>
-
-          <motion.p 
-            className="mt-6 text-gray-700 text-lg font-semibold"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-          >
-            We believe in transforming lives, one step at a time. If you’re eligible for our programs, 
-            apply today and take advantage of the available resources.
-          </motion.p>
         </div>
-      </section>
-    </div>
-
+      </div>
     </div>
   );
 };
 
-export default AboutUs;
+export default About;

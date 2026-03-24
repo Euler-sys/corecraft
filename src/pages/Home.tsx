@@ -1,13 +1,19 @@
-import HeroSection from "../components/heroSection"
-import Testimonials from "../components/testimonial"
 
+import DesignHelp from '../components/designHelp'
+import Hero from '../components/hero'
+import HowItWorks from '../components/howitworks'
+import Reviews from '../components/review'
 
 const Home = () => {
   return (
-  <>
-  <HeroSection/>
-  <Testimonials/>
-  </>
+   <>
+  
+   <Hero/>
+   <HowItWorks/>
+   <Reviews/>
+   <DesignHelp/>
+
+   </>
   )
 }
 

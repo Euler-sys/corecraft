@@ -1,15 +1,15 @@
 import React from "react";
-import { HashRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 
 import "animate.css";
+import Home from "./pages/home";
 import Header from "./components/header";
-import Home from "./pages/Home";
 import Footer from "./components/footer";
-import AboutUs from "./pages/about";
-import ClaimWinnings from "./pages/claim";
-import ContactUs from "./components/contact";
-import Winners from "./pages/winners";
-import ManageWinners from "./pages/manage";
+import Contact from "./pages/contact";
+import WhatsAppIcon from "./components/whatsapp";
+import About from "./pages/about";
+
+
 
 
 const App: React.FC = () => {
@@ -18,20 +18,15 @@ const App: React.FC = () => {
       <div className="font-sans">
         <Header/>
         <Routes>
+          
           <Route path="/" element={<Home />} />
-          <Route path="about" element={<AboutUs />} />
-          <Route path="prize-claim" element={<ClaimWinnings />} />
-          <Route path="contact" element={<ContactUs />} />
-          <Route path="winners" element={<Winners />} />
-          <Route path="admin" element={<ManageWinners />} />
-        </Routes>
-        <Footer/>
-        <Link to="/prize-claim"
-          className="fixed bottom-4 right-4 bg-black text-white px-6 py-3  shadow-lg text-lg font-semibold  hover:bg-blue-800 "
-        >
-          Claim Prize
-        </Link>
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
+                  </Routes>
+       <WhatsAppIcon/>
+        <Footer/> 
       </div>
+    
     </Router>
   );
 };

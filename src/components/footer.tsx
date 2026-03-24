@@ -1,86 +1,178 @@
-import { FaFacebookF, FaTwitter,  FaPhone, FaEnvelope } from "react-icons/fa";
-import logo from '../assets/LOGO-removebg-preview.png'
-const Footer = () => {
-  return (
-    <footer className="bg-[#ccc] text-white py-10">
-      <div className="max-w-6xl mx-auto px-6 lg:px-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
-          
-          {/* About United Way Benefits */}
-          <div>
-            <img src={logo} width="200" className="m-auto" />
-            <p className="text-black mt-3 text-sm">
-              Empowering individuals and families by providing financial assistance, 
-              health services, and community support programs.
-            </p>
-          </div>
+// Footer.tsx
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import usa from '../assets/us_flag_small.png'
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaInstagram,
+  FaPinterestP,
+} from "react-icons/fa";
+import { GiUsaFlag } from "react-icons/gi"; // US flag icon
 
-          {/* Navigation Links */}
-          <div>
-            <h3 className="text-lg font-semibold text-blue-800 ">Quick Links</h3>
-            <ul className="mt-3 space-y-2 text-black">
-              <li><a href="#" className="hover:text-blue-800 transition">Home</a></li>
-              <li><a href="#" className="hover:text-blue-800 transition">About Us</a></li>
-              <li><a href="#" className="hover:text-blue-800 transition">Programs</a></li>
-              <li><a href="#" className="hover:text-blue-800 transition">Resources</a></li>
-              <li><a href="#" className="hover:text-blue-800 transition">Contact</a></li>
+type Tab = {
+  title: string;
+  links: { label: string; flag?: boolean }[];
+};
+
+const tabs: Tab[] = [
+  {
+    title: "Company",
+    links: [
+      { label: "Careers" },
+      { label: "Design Careers" },
+      { label: "Reviews" },
+      { label: "Pricing" },
+      { label: "Blog" },
+      { label: "Press Inquiries" },
+      { label: "Contact" },
+    ],
+  },
+  {
+    title: "Explore",
+    links: [
+      { label: "Style Quiz" },
+      { label: "Financing" },
+      { label: "Gift Cards" },
+      { label: "Refer & Earn" },
+      { label: "Help Center" },
+      { label: "Promotions" },
+      { label: "Havenly AI" },
+    ],
+  },
+  {
+    title: "In-Person Locations",
+    links: [
+      { label: "USA - 123 Main St, New York, NY", flag: true },
+      { label: "China - 88 Nanjing Rd, Shanghai" },
+      { label: "UK - 10 Downing St, London" },
+    ],
+  },
+  {
+    title: "Our Brands",
+    links: [
+      { label: "Interior Define" },
+      { label: "The Citizenry" },
+      { label: "Burrow" },
+      { label: "The Inside" },
+      { label: "St. Frank" },
+    ],
+  },
+];
+
+const socialIcons = [
+  { icon: <FaFacebookF />, name: "Facebook" },
+  { icon: <FaTwitter />, name: "Twitter" },
+  { icon: <FaInstagram />, name: "Instagram" },
+  { icon: <FaPinterestP />, name: "Pinterest" },
+];
+
+const Footer: React.FC = () => {
+  const [openTab, setOpenTab] = useState<string | null>(null);
+
+  const toggleTab = (title: string) => {
+    setOpenTab(openTab === title ? null : title);
+  };
+
+  return (
+    <footer className="bg-white text-gray-800 shadow-inner border-t border-gray-300 px-6 py-10">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+        {tabs.map((tab) => (
+          <div key={tab.title}>
+            {/* Mobile Accordion */}
+            <button
+              className="flex justify-between w-full md:hidden font-semibold mb-2 text-lg"
+              onClick={() => toggleTab(tab.title)}
+            >
+              {tab.title}
+              <span className="ml-2">{openTab === tab.title ? "−" : "+"}</span>
+            </button>
+
+            {/* Desktop Title */}
+            <p className="hidden md:block font-bold text-lg mb-3">{tab.title}</p>
+
+            {/* Links */}
+            <ul
+              className={`${
+                openTab === tab.title ? "block" : "hidden"
+              } md:block space-y-2`}
+            >
+              {tab.links.map((link) => (
+                <li key={link.label} className="flex items-center">
+                  <Link
+                    to="/contact"
+                    className="hover:text-blue-600 transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                  {link.flag && (
+                    <GiUsaFlag className="ml-2 text-red-500 text-xl" title="USA" />
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
+        ))}
+      </div>
 
-          {/* Contact Information
-          <div>
-            <h3 className="text-lg font-semibold text-blue-800">Contact Us</h3>
-            <div className="text-black mt-3 text-sm flex flex-col justify-center ">
-                <div className="flex gap-2  "> <FaLocationArrow/> <p>123 Hope Street, New York, NY 10001</p></div>
-                <div className="flex gap-2  "> <FaPhone/> <p>(123) 456-7890 </p></div>
-                <div className="flex gap-2  "> <FaEnvelope/> <p>support@unitedwaybenefits.org</p></div>
-             
-            
-             
-            </div>
-          </div> */}
+      {/* Social Icons */}
+      <div className="mt-10 border-t border-gray-200 pt-6 flex flex-col md:flex-row justify-between items-center">
+        <div className="flex space-x-4 mb-4 md:mb-0 text-blue-600">
+          {socialIcons.map((social) => (
+            <Link
+              key={social.name}
+              to="/contact"
+              className="hover:text-blue-800 transition-colors text-xl"
+              aria-label={social.name}
+            >
+              {social.icon}
+            </Link>
+          ))}
         </div>
 
-        {/* Social Media & Newsletter Section */}
-        <div className="mt-8 flex flex-col md:flex-row items-center justify-between text-center">
-          
-          {/* Social Media Icons */}
-          <div className="flex space-x-4 mb-4 md:mb-0">
-            <a href="#" className="p-3 bg-gray-800 rounded-full hover:bg-blue-500 transition">
-              <FaFacebookF className="text-white text-lg" />
-            </a>
-            <a href="#" className="p-3 bg-gray-800 rounded-full hover:bg-blue-500 transition">
-              <FaTwitter className="text-white text-lg" />
-            </a>
-            <a href="#" className="p-3 bg-gray-800 rounded-full hover:bg-blue-500 transition">
-              <FaPhone className="text-white text-lg" />
-            </a>
-            <a href="#" className="p-3 bg-gray-800 rounded-full hover:bg-blue-500 transition">
-              <FaEnvelope className="text-white text-lg" />
-            </a>
-          </div>
-
-          {/* Newsletter Subscription */}
-          <div className="mt-4 md:mt-0">
-            <h3 className="text-lg font-semibold text-blue-800">Subscribe to Our Newsletter</h3>
-            <div className="flex mt-3">
-              <input 
-                type="email" 
-                placeholder="Enter your email" 
-                className="px-4 py-2 rounded-l-md text-gray-900 focus:outline-none"
-              />
-              <button className="bg-black px-4 py-2 rounded-r-md hover:bg-blue-800 transition">
-                Subscribe
-              </button>
-            </div>
-          </div>
-        </div>
+        {/* Verified look */}
+       
 
         {/* Copyright */}
-        <p className="text-gray-800 text-center text-sm mt-6">
-          &copy; {new Date().getFullYear()} United Way Benefits. All rights reserved.
-        </p>
+        <div className="text-sm text-gray-500">
+         
+          <div className="flex flex-wrap gap-4 mt-1">
+            <Link to="/contact" className="hover:text-blue-600">
+              Privacy Policy
+            </Link>
+            <Link to="/contact" className="hover:text-blue-600">
+              Terms of Service
+            </Link>
+            <Link to="/contact" className="hover:text-blue-600">
+              ADA Accessibility
+            </Link>
+           
+          </div>
+        </div>
       </div>
+       <div className="flex m-auto justify-center mt-8 items-center space-x-2 mb-4 md:mb-0 text-sm text-gray-500">
+  <img src={usa} alt="USA Flag" className="w-5 " />
+  <span className="flex items-center space-x-1">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-4 w-4 text-green-600"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={3}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M5 13l4 4L19 7"
+      />
+    </svg>
+    <span>Verified Business</span>
+  </span>
+
+</div>
+   <p className="text-center text-gray-500 text-sm">© 2026 Havenly Inc., All Rights Reserved.</p>
+
     </footer>
   );
 };
