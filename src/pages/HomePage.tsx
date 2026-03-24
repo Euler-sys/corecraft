@@ -4,7 +4,7 @@ import Hero from '../components/hero'
 import HowItWorks from '../components/howitworks'
 import Reviews from '../components/review'
 
-const Home = () => {
+const HomePage = () => {
   return (
    <>
   
@@ -17,4 +17,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default HomePage

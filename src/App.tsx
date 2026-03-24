@@ -2,12 +2,12 @@ import React from "react";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 
 import "animate.css";
-import Home from "./pages/home";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import Contact from "./pages/contact";
 import WhatsAppIcon from "./components/whatsapp";
 import About from "./pages/about";
+import HomePage from "./pages/HomePage";
 
 
 
@@ -19,7 +19,7 @@ const App: React.FC = () => {
         <Header/>
         <Routes>
           
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
                   </Routes>
