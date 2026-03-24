@@ -32,7 +32,7 @@ const DesignHelp: React.FC = () => {
         {links.map((label, index) => (
           <Link
             key={index}
-            to="/contact"
+            to="/about"
             className="flex-shrink-0 px-4 py-3 mt-4 bg-white gap-4 rounded shadow text-center hover:bg-gray-100 transition whitespace-nowrap"
           >
             {label}
