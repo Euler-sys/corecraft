@@ -21,7 +21,7 @@ const Hero: React.FC = () => {
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 md:px-0">
-        <div className="text-yellow-500 uppercase tracking-widest mb-4 text-sm md:text-base">
+        <div className="text-yellow-500 uppercase tracking-widest mb-8 text-sm md:text-base">
           THE #1 INTERIOR DESIGN SERVICE
         </div>
         <h1 className="text-white text-3xl md:text-5xl font-bold mb-6 max-w-3xl">
