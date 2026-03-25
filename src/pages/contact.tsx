@@ -23,17 +23,48 @@ const Contact: React.FC = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Form submitted:", {
-      selectedTopic,
-      details,
-      selectedFileName,
-    });
-    alert("Your message has been sent!");
-    setDetails("");
-    setSelectedFileName("");
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  const formData = {
+    topic: selectedTopic,
+    details: details,
+    attachment: selectedFileName,
   };
+
+  try {
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        access_key: "4b407d1b-ea92-428b-9ce2-650146d4c92e", // Get this from Web3Form
+        subject: `New Support Request: ${selectedTopic}`,
+        from_name: "Support Form",
+        reply_to: "hickdonna*@gmail.com",
+        message: `Topic: ${selectedTopic}\nDetails: ${details}\nAttachment: ${selectedFileName}`,
+        data: formData,
+      }),
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      alert("Your message has been sent successfully!");
+      setDetails("");
+      setSelectedFileName("");
+      setSelectedTopic(""); // Reset topic if needed
+    } else {
+      alert("There was a problem sending your message. Try again later.");
+      console.error(result);
+    }
+  } catch (error) {
+    console.error("Error submitting form:", error);
+    alert("There was a problem sending your message. Try again later.");
+  }
+};
 
   return (
     <>
